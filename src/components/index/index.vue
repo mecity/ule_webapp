@@ -12,12 +12,16 @@
 		   	</div>
 			<div class="swpie_box">
 		   		<mt-swipe :auto="4000">
-				  <mt-swipe-item v-for="(value,index) in bannerDefaultlist" :key='index'  v-on:touch.prevent="leftBar">
+				  <mt-swipe-item v-for="(value,index) in bannerDefaultlist" :key='index'>
 				  	<a :href="value.herf"  v-on:touch.stop="leftBar" >
-				  		<img v-bind:title="value.name"  v-lazy.container="value.src">
+				  		<img v-bind:title="value.name"  v-on:touch.prevent="leftBar" v-lazy.container="value.src">
 				  	</a>
 				  	</mt-swipe-item> 
 				</mt-swipe>
+			</div>
+			
+			<div class="inder_menu" ref="inder_menu">
+				dsadsa
 			</div>
 
 
@@ -101,20 +105,19 @@
 
 		    let that=this;
 		   	
+
+		    console.info(this.$refs.inder_menu.getBoundingClientRect().top)
+
+
 			window.addEventListener('scroll',function(e){
-				var domtest=document.getElementById('test');
-				if(domtest){
 
-					/*改变首页顶部导航条颜色,记录原始相对距离*/
-			   		let start= domtest.offsetTop
-					let Top= domtest.getBoundingClientRect().top;
+				var domtest=that.$refs.inder_menu.getBoundingClientRect().top;
+	
+				if(domtest<40){
+					that.IndexActiveClass=true;
 
-					if((start-Top)>40){
-			      		that.IndexActiveClass=true;
-			      	}else{
-						that.IndexActiveClass=false;
-					}
-
+				}else{
+					that.IndexActiveClass=false;
 				}
 		    },true)
 		  },
@@ -123,7 +126,17 @@
 
 		  	leftBar(){
 		  		alert('a')
-		  	}
+		  	},
+
+		  	getScrollTop() {  
+			        var scrollPos;  
+			        if (window.pageYOffset) {  
+			        scrollPos = window.pageYOffset; }  
+			        else if (document.compatMode && document.compatMode != 'BackCompat')  
+			        { scrollPos = document.documentElement.scrollTop; }  
+			        else if (document.body) { scrollPos = document.body.scrollTop; }   
+			        return scrollPos;   
+			} 
 
 
 
@@ -155,14 +168,16 @@
 		bottom: 55px;
 		overflow-y: auto;
 	}
-	
+	.index_header_bg{
+		background-color:#1fcca9; 
+	}
 	.index_header{
 		position: fixed;
 		left: 0px;
 		top: 0px;
 		right: 0px;
 		height: 40px;
-		z-index: 999;
+		z-index: 9999;
 		display: flex;
 		display: -webkit-flex;
 		-moz-transition:background-color .5s ease;
@@ -170,9 +185,6 @@
 		-o-transition: background-color .5s ease;
 		transition: background-color .5s ease;
 		
-		.index_header_bg{
-			background-color:#1fcca9; 
-		}
 		.left_list_btn{
 			width: 50px;
 			height: 40px;
@@ -220,7 +232,9 @@
 			}
 		}
 	}
-
+	.mint-swipe-indicators{
+			bottom: 50px!important;
+		}
 	.swpie_box{
 		height: 200px;
 		position: relative;
@@ -234,6 +248,7 @@
 			max-width: 100%;
 			margin: 0px auto;
 		}
+		
 		.mint-swipe-indicators .mint-swipe-indicator{
 			width: 8px;
 		    height: 8px;
@@ -243,10 +258,22 @@
 		    opacity: 0.2;
 		    margin: 0 3px;
 		}
-
+		
 	}
 
-	
+	.inder_menu{
+		height: 120px;
+		background: #fff;
+		margin: 0px 10px;
+		margin-top: -40px;
+		position: relative;
+		z-index: 999;
+		border-radius: 3px;
+		-webkit-border-radius:3px;
+		-moz-border-radius:3px;
+		overflow: hidden;
+		box-shadow: 0px 2px 2px rgba(238,238,238,0.8);
+	}
 	
 	
 
