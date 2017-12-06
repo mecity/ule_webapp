@@ -3,6 +3,10 @@
 	对于较大的图片地址 在当前组件引入会出现问题，放在css文件里引入会解决此问题
  */
 
+#app{
+	height: 100%;
+}
+
 .common_box{
 	width: 94%;
 	display: block;

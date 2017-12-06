@@ -150,10 +150,10 @@
 		},
 
 		mounted() {
+
+			this.$store.dispatch('getUsercode',{username:'username'})
+
 		    setInterval(this.loopNewlist, 2000);
-
-		    
-
 
 		    /*让顶部导航条到一定距离增加背景色*/
 		    let that=this;
