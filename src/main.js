@@ -5,7 +5,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-
+import store from '@/vuex/vuex'
 
 /*引入该插件可以屏蔽移动端点击事件延迟300毫秒bug*/
 import FastClick from 'fastclick';
@@ -53,6 +53,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })

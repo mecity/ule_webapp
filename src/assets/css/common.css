@@ -31,7 +31,6 @@ small{
 	bottom: -1px;
 	width: 100%;
 	height: 1px;
-	/* background-color: #e0e0e0;*/
 	border-top:1px solid #dedede;
 	-webkit-transform: scaleY(.5);
 	transform:scaleY(.5);
@@ -60,6 +59,12 @@ small{
 }
 .pt5{
 	padding-top: 5px;
+}
+.pl-5{
+	padding-left: 5px;
+}
+.pr-5{
+	padding-right: 5px;
 }
 .pt10{
 	padding-top: 10px
@@ -114,13 +119,27 @@ small{
 
 
 /* 默认mint-ui样式主题更改 */
-.index_swiper .swpie_box .mint-swipe-indicators {
-    bottom: 50px;
+.swpie_box .mint-swipe-indicators {
+    bottom: 45px;
 }
-.index_swiper .swpie_box .mint-swipe-indicator.is-active{
-	background: #ffa646;
-	opacity: 0.5
+.swpie_box .mint-swipe-indicators .is-active{
+	background: #e67661!important;
+	opacity: 0.8!important;
 }
+.swpie_box .mint-swipe-indicators .mint-swipe-indicator{
+	width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 100%;
+    background: white;
+    opacity: 0.3;
+    margin: 0 3px;
+}
+
+
+
+
+
 .mint-header.is-fixed{
 	z-index: 9999999
 }
