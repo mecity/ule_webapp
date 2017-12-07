@@ -30,12 +30,31 @@
 					pass:''
 				}
 			},
+			computed:{
+				/*实时计算vuex中登录状态*/
+				listenshowpage(){
+					return this.$store.state.isLogin;
+				}
+			},
+			watch:{
+				/*监听上面的如果值发生改变就判断如果是true则表示登录成功*/
+	            listenshowpage: function(newvuale, oldvuale) {  
+	                if(newvuale){
+	                	/*登录成功跳转跳转目标*/
+	                	this.$router.push({name:'member'});
+	                }
+	            }
+			},
+			mounted(){
+
+				console.info('原始',this.$store.state.isLogin)
+
+			},
 
 			methods:{
 				checkLogin(){
-					alert('进行登录')
+					this.$store.dispatch('getUsercode',{username:this.username,pass:this.pass})
 				}
-
 			}
 
 

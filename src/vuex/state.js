@@ -14,8 +14,10 @@ const state={
 	creatData:'',/*异步提交放置请求数据对象*/
 	lineList:[],/*线路列表集*/
 	LinePage:false,/*总页数*/
-	currentpPage:1,/*当前请求页*/
+	currentPage:1,/*当前请求页*/
+	pageNum:20,/*每次请求条数*/
 	noMore:false,
+	indexHotline:null,
 }
 
 export default state

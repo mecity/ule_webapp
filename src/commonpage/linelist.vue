@@ -1,44 +1,56 @@
 <!--线路列表-->
 <template>
 	<div class="hotine">
-		<p><span class="c-333 f-16">{{msg}}</span><a href="">更多</a></p>
-
-		<div class="common_box hotline_box" v-for="(value,index) in hotlist" :key="index">
+		<slot name="title"></slot>	
+		<div class="common_box hotline_box" v-for="(value,index) in list" :key="index">
 			<div class="img">
-				<img src="~@/assets/img/list_line.jpg">
-				<ol>{{value.name}}</ol>
+				<img :src="value.thumb">
+				<ol>{{value.cityname}}</ol>
 			</div>
 			<div class="line_box">
 				<div class="linetitle">
 					{{value.title}}
 				</div>
 				<blockquote>
-					<span>2017/09/22<cite>出发</cite></span>
-					<em>$4666</em>
+					<span>{{value.start_time}}<cite>出发</cite></span>
+					<em>￥{{value.price_last}}</em>
 				</blockquote>
 			</div>
 		</div>
-		
-
 	</div>
-
-
-
 </template>
 <script>
 	export default{
 		name:'hotine',
-		data(){
-			return {
-				msg:'热门地接线路'
+		props:['hotlist'],
+		computed:{
+			list:function(){
+				let that=this;
+				let hotlist = this.hotlist;
+				let arr=[];
+				if(hotlist){
+					hotlist.filter(function (v,i) {
+						v.title=that.$function.subStrings(v.title,40);
+						v.start_time=that.checkStarttime(v.start_time);
+						v.thumb=that.$store.state.webSite+v.thumb;
+						arr[i]=v;
+		            });
+				}
+				return arr;
 			}
+
+
 		},
 
-		props:['hotlist'],
-
-		mounted(){
-			this.msg='热门地接线路';
+		methods:{
+			/*处理出发日期*/
+            checkStarttime(value){
+            	value=parseInt(value)*1000;
+            	let date=new Date(value);
+            	return date.getFullYear()+'/'+date.getMonth()+'/'+date.getDate();	
+            }
 		}
+
 
 
 	}
@@ -116,7 +128,7 @@
 		line-height: 22px;
 		min-height: 44px;
 		overflow: hidden;
-		font-size: 15px;
+		font-size: 14px;
 		text-align: left;
 		color: #666;
 	}

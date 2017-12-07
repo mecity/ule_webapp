@@ -3,7 +3,7 @@
 
 */
 
-import { Toast } from 'mint-ui';
+import { Toast,Indicator  } from 'mint-ui';
 
 // import MD5 from "md5";
 var MD5 = require('md5.js')
@@ -121,6 +121,41 @@ export const alertToast=(str,position='middle',duration=3000)=>{
 	});
 
 }
+
+/*loading*/
+export const loadingAlert=(str='加载中...',icontype=1)=>{
+	let spinnerType='';
+	switch(icontype){
+		case 1:
+		spinnerType='fading-circle';
+		break;
+		case 2:
+		spinnerType='snake';
+		break;
+		case 3:
+		spinnerType='double-bounce';
+		break;
+		case 4:
+		spinnerType='triple-bounce';
+		break;
+		default:
+		spinnerType='fading-circle';
+		break;
+	}
+	Indicator.open({
+		text: str,
+		spinnerType: spinnerType
+	});
+
+}
+
+/*关闭loading*/
+export const loadingClose=()=>{
+	Indicator.close();
+}
+
+
+
 
 
 

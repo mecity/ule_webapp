@@ -51,7 +51,9 @@
 			<guideIndex :newslist="newslist"></guideIndex>
 			
 			<!--搭伴游-->
-			<lineIndex :hotlist="hotlist"></lineIndex>
+			<lineIndex :hotlist="hotlist">
+				<p slot="title"><span class="c-333 f-16">热门地接线路</span><a href="">更多</a></p>
+			</lineIndex>
 
 
 
@@ -129,10 +131,9 @@
 			    	{face:face,username:'首页数据',region:'日本地接',info:"这小子很懒，连个自我介绍都没留..."},
 			    	{face:face,username:'首页数据2',region:'日本地接',info:"这小子很懒，连个自我介绍都没留..."}
 			    ],
-			    hotlist:[
-			    	{name:'dsad',title:'首页数据',region:'日本地接',info:"这小子很懒，连个自我介绍都没留..."}
-			    ],
+			    hotlist:null,
 			    activeIndex: 0,
+			    loading:false,
 			}
 
 		},
@@ -148,11 +149,7 @@
 		 	 'lineIndex':lineIndex
 
 		},
-
 		mounted() {
-
-			this.$store.dispatch('getUsercode',{username:'username'})
-
 		    setInterval(this.loopNewlist, 2000);
 
 		    /*让顶部导航条到一定距离增加背景色*/
@@ -179,40 +176,41 @@
 		      return - this.activeIndex * 40 + 'px';
 		    },
 
-		    actives(){
-
-		    	alert(this.active)
-
+		    /*实时计算属性*/
+		    checkIndexhotline(){
+		    	return this.$store.state.indexHotline
 		    }
 
 		},
 
 		watch:{
-
 			'active':function(newvalue,oldvalue){
-
 				if(newvalue==='tab-container1'){
 					this.IndexActiveClass=false;
 				}
-
-			}
+			},
+			'checkIndexhotline':function(newvalue,oldvalue){
+				if(newvalue!=null){
+					this.hotlist=newvalue;
+				}
+			},
 
 		},
 
 		methods:{
 
-		  	leftBar(){
-		  		alert('a')
-		  	},
-
 		  	/*最新通知上滚*/
 		  	loopNewlist(){
 
 		  		if(this.activeIndex < this.newsDefaultlist.length-1) {
-			        this.activeIndex += 1;
-			      } else {
-			        this.activeIndex = 0;
-			      }
+		  			this.activeIndex += 1;
+		  		} else {
+		  			this.activeIndex = 0;
+		  		}
+
+		  	},
+
+		  	leftBar(){
 
 		  	}
 
@@ -223,10 +221,6 @@
 
 
 	}
-
-
-
-
 
 </script>
 <style scoped lang="less">
