@@ -2,13 +2,13 @@
 <template>
   <div class="guide_index common_box" v-on:touchmove.stop>
     	<p class="c-666">最新地接导游</p>
-    	<mt-swipe :auto="4000" class='guide_index_swipe'>
-		  <mt-swipe-item v-for="(value,index) in newslist">
-		  	<a href="" class="guide_swipe_box">
+    	<mt-swipe :auto="4000" class='guide_index_swipe' :show-indicators="false">
+		  <mt-swipe-item v-for="(value,index) in list" :key="index">
+		  	<a href="#" class="guide_swipe_box">
 		  		<img :src="value.face">
 		  		<div class="guide_flex">
-		  		<h2 class="c-333 f-14">{{value.username}}<cite class="c-ule-orange pr-5 pl-5">·</cite><small class="c-ule-orange">{{value.region}}</small></h2>
-		  		<blockquote>{{value.info}}</blockquote>
+		  		<h2 class="c-333 f-14">{{value.memberName}}<cite class="c-ule-orange pr-5 pl-5">·</cite><small class="c-ule-orange">{{value.place}}</small></h2>
+		  		<blockquote>{{value.member_about}}</blockquote>
 		  		</div>
 		  	</a>
 		  </mt-swipe-item>
@@ -21,22 +21,46 @@
 import { Swipe, SwipeItem } from 'mint-ui';
 import face from "@/assets/img/face.jpg";
 export default {
-  name: 'guide',
-  props:{
-  	newslist:{
-  		type:Array,/*声明类型*/
-      	default:function(){
-       	 return [
-       	 {face:face,username:'北海道吃货默认数据',region:'日本地接',info:"这小子很懒，连个自我介绍都没留..."},
-       	 {face:face,username:'北海道吃货1',region:'日本地接',info:"这小子很懒，连个自我介绍都没留..."}]
-      	}
-  	}
+	name: 'guide',
+	props:['newslist'],
+	components: { 
+		'mt-swipe': Swipe,
+		'mt-swipe-item':SwipeItem
+	},
+	computed:{
+		list:function(){
+			let that=this;
+			let list = this.newslist;
+			let arr=[];
+			if(list){
+				list.filter(function (v,i) {
+					let memberName='';
+					if(v.member_ename!=''){memberName=v.member_ename;}else{memberName=v.member_name;}
+					v.memberName=memberName;
 
-  },
-  components: { 
-		 'mt-swipe': Swipe,
-		 'mt-swipe-item':SwipeItem
-	}
+					/*组装地接字段*/
+					let arrcountry=[];
+					arrcountry.push(v.countryname);
+					if(v.statename)arrcountry.push(v.statename);
+					if(v.cityname)arrcountry.push(v.cityname);
+					v.place=arrcountry.join('·');
+
+					let face=JSON.parse(v.member_face);
+					v.face=that.$store.state.webSite+face.middle;
+
+					v.member_about=v.member_about?v.member_about:'这人太懒,什么都木有留下...';
+					arr[i]=v;
+				});
+
+			}
+			return arr;
+		}
+
+
+	},
+
+
+
 }
 </script>
 
@@ -59,6 +83,10 @@ export default {
 	height: 90px;
 	box-sizing: border-box;
 	padding: 10px 0px;
+	.mint-swipe-indicator.is-active {
+	   background: red!important;
+		opacity: 0.8!important;
+	}
 }
 .guide_swipe_box{
 	display: block;
@@ -97,16 +125,5 @@ export default {
 		font-size: 13px;
 	}
 }
-.mint-swipe-indicator {
-    width: 8px;
-    height: 8px;
-    display: inline-block;
-    border-radius: 100%;
-    background: red !important;
-    opacity: 0.2;
-    margin: 0 3px;
-}
-.mint-swipe-indicator.is-active {
-    background: #ffa157 !important;
-}
+
 </style>

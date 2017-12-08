@@ -117,11 +117,15 @@ const actions={
 		context.commit('creatSign',{page:1,pagenum:5});
 		await axios.post('index.php/Api/User/index',context.state.creatData,config)
 		.then(function(response){
-			console.info('地接导游',response);
+			if(response.data.success){
+				context.commit('updataIndexmember',response.data.data);
+				console.info(response.data.data)
+			}else{
+				functionS.alertToast('数据加载有误...');
+		  		return false;
+			}
 		})
 
-
-		
 
 		/*热门线路*/
 		let pagenum=context.state.pageNum;/*每次请求条数*/
@@ -131,8 +135,6 @@ const actions={
 		.then(function(response){
 			if(response.data.success){
 				functionS.loadingClose();
-				console.info('getindexdara',response.data.data)
-
 				context.commit('updataIndexhotline',response.data.data);
 			}else{
 				functionS.alertToast('数据加载有误...');

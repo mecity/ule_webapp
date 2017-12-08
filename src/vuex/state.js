@@ -18,6 +18,7 @@ const state={
 	pageNum:20,/*每次请求条数*/
 	noMore:false,
 	indexHotline:null,
+	indexMember:null,
 }
 
 export default state

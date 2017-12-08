@@ -179,3 +179,11 @@ a,button,input,textarea{
 @media screen and (min-width:600px){
     html{ font-size:14px;}
 }
+@media (min-width:800px){
+    html{ font-size:14px;}
+    body{
+      display: block;
+      width: 750px;
+      margin: 0 auto; 
+    }
+}

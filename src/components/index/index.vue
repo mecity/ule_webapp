@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<!--最新地接-->
-			<guideIndex :newslist="newslist"></guideIndex>
+			<guideIndex :newslist="guidelist"></guideIndex>
 			
 			<!--搭伴游-->
 			<lineIndex :hotlist="hotlist">
@@ -127,10 +127,7 @@
 			        { id: 3,title:'隔天病危入院1个月花7万',url:'index/id/3'},
 			        { id: 4,title:'女司机倒车时误将油门当刹车 从6米高平台掉下',url:'index/id/4'}
 			    ],
-			    newslist:[
-			    	{face:face,username:'首页数据',region:'日本地接',info:"这小子很懒，连个自我介绍都没留..."},
-			    	{face:face,username:'首页数据2',region:'日本地接',info:"这小子很懒，连个自我介绍都没留..."}
-			    ],
+			    guidelist:null,
 			    hotlist:null,
 			    activeIndex: 0,
 			    loading:false,
@@ -179,7 +176,12 @@
 		    /*实时计算属性*/
 		    checkIndexhotline(){
 		    	return this.$store.state.indexHotline
-		    }
+		    },
+
+		    checkIndexMember(){
+		    	return this.$store.state.indexMember
+		    },
+
 
 		},
 
@@ -194,7 +196,11 @@
 					this.hotlist=newvalue;
 				}
 			},
-
+			'checkIndexMember':function(newvalue,oldvalue){
+				if(newvalue!=null){
+					this.guidelist=newvalue;
+				}
+			}
 		},
 
 		methods:{

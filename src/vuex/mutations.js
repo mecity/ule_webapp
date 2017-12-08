@@ -52,11 +52,18 @@ const mutations={
 
   /*首页热门线路数据负载*/
   updataIndexhotline(state,data){
-
-    console.info('vuexindexdata',data)
-
     state.indexHotline=data;
-  }
+  },
+
+
+
+  /*首页最新地接*/
+  updataIndexmember(state,data){
+    state.indexMember=data;
+  },
+
+
+
 
 }
 
