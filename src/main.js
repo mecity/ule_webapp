@@ -7,7 +7,7 @@ import router from './router'
 import axios from 'axios'
 import store from '@/vuex/vuex'
 import * as functionS from "@/assets/js/function";
-
+import common from "@/global/common";
 
 /*引入该插件可以屏蔽移动端点击事件延迟300毫秒bug*/
 import FastClick from 'fastclick';
@@ -63,6 +63,8 @@ new Vue({
   components: { App },
   // 组件创建前，把网站默认的数据都异步加载了
   beforeCreate() {
-    this.$store.dispatch('getIndexdata')
+
+      this.$store.dispatch('getIndexdata')
+
   }
 })

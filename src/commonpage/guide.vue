@@ -47,7 +47,6 @@ export default {
 
 					let face=JSON.parse(v.member_face);
 					v.face=that.$store.state.webSite+face.middle;
-
 					v.member_about=v.member_about?v.member_about:'这人太懒,什么都木有留下...';
 					arr[i]=v;
 				});

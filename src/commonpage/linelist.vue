@@ -2,17 +2,17 @@
 <template>
 	<div class="hotine">
 		<slot name="title"></slot>	
-		<div class="common_box hotline_box" v-for="(value,index) in list" :key="index">
+		<div class="common_box hotline_box" v-for="(value,index) in list()" :key="index">
 			<div class="img">
-				<img :src="value.thumb">
+				<img :src="value.min_thumb">
 				<ol>{{value.cityname}}</ol>
 			</div>
 			<div class="line_box">
 				<div class="linetitle">
-					{{value.title}}
+					{{value.linetitle}}
 				</div>
 				<blockquote>
-					<span>{{value.start_time}}<cite>出发</cite></span>
+					<span>{{value.start}}<cite>出发</cite></span>
 					<em>￥{{value.price_last}}</em>
 				</blockquote>
 			</div>
@@ -23,32 +23,27 @@
 	export default{
 		name:'hotine',
 		props:['hotlist'],
-		computed:{
-			list:function(){
-				let that=this;
-				let hotlist = this.hotlist;
-				let arr=[];
-				if(hotlist){
-					hotlist.filter(function (v,i) {
-						v.title=that.$function.subStrings(v.title,40);
-						v.start_time=that.checkStarttime(v.start_time);
-						v.thumb=that.$store.state.webSite+v.thumb;
-						arr[i]=v;
-		            });
-				}
-				return arr;
-			}
-
-
-		},
-
 		methods:{
 			/*处理出发日期*/
             checkStarttime(value){
             	value=parseInt(value)*1000;
             	let date=new Date(value);
             	return date.getFullYear()+'/'+date.getMonth()+'/'+date.getDate();	
-            }
+            },
+            list(){
+				let that=this;
+				let hotlist = this.hotlist;
+				let arr=[];
+				if(hotlist){
+					hotlist.filter(function (v,i) {
+						v.linetitle=that.$function.subStrings(v.title,40);
+						v.start=that.checkStarttime(v.start_time);
+						v.min_thumb=that.$store.state.webSite+v.thumb;
+						arr[i]=v;
+		            });
+				}
+				return arr;
+			}
 		}
 
 
@@ -57,7 +52,6 @@
 	
 </script>
 <style scoped lang="less">
-	
 	.hotine{
 		display: block;
 		/*overflow: hidden;*/

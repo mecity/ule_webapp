@@ -70,11 +70,32 @@ small{
 .pr-5{
 	padding-right: 5px;
 }
+.pl-10{
+	padding-left: 10px;
+}
 .pt10{
 	padding-top: 10px
 }
+.pb-10{
+	padding-bottom: 10px
+}
+.pb-15{
+	padding-bottom: 15px
+}
+.pt-35{
+	padding-top: 35px;
+}
+.pt-40{
+	padding-top: 40px;
+}
+.mt_10{
+	margin-top: 10px;
+}
 .mt_20{
 	margin-top: 20px;
+}
+.mt_40{
+	margin-top: 40px;
 }
 .c-666{
 	color: #666
@@ -118,6 +139,23 @@ small{
 	background-image:linear-gradient(45deg, #1fcca9, #37c6c0);
 	box-shadow: 0px 5px 10px rgba(119,234,227,.3);
 }
+.btn_ule_quite{
+	border-radius: 5px;
+	height: 45px;
+	border:none;
+	width: 90%;
+	color: white;
+	cursor: pointer;
+	background-image:-webkit-linear-gradient(45deg, #f18155, #e15822); 
+	background-image:linear-gradient(45deg, #f18155, #e15822);
+	box-shadow: 0px 5px 10px rgba(255,155,115,.3);
+}
+
+
+.bg_white{
+	background: white;
+}
+
 
 
 
@@ -141,14 +179,11 @@ small{
 }
 
 
-
-
-
 .mint-header.is-fixed{
 	z-index: 9999999
 }
 .mint-header{
-	background: #1fcca9;
+	background: #1fcca9!important;
 }
 
 /* 底部menu */
@@ -167,4 +202,12 @@ small{
 .mint-tabbar > .mint-tab-item.is-selected{
 	background: transparent!important;
 	color: #1abc9c!important;
+}
+
+.mint-cell-wrapper{
+	font-size: inherit!important;
+}
+
+.mint-cell:last-child{
+	background-image:none!important 
 }

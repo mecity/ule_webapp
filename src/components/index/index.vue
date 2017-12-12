@@ -23,10 +23,10 @@
 			
 			<div class="inder_menu" ref="inder_menu">
 				<div class="quickMenu">		
-					<a href="#">
+					<router-link :to="{name:'member'}">
 						<i class="iconfont icon-activity_fill"></i>
 						<p>发布信息</p>
-					</a>
+					</router-link>
 					<a href="#">
 						<i class="iconfont icon-feedback_fill"></i>
 						<p>悠乐幇</p>
@@ -48,15 +48,12 @@
 				</div>
 			</div>
 			<!--最新地接-->
-			<guideIndex :newslist="guidelist"></guideIndex>
+			<guideIndex :newslist="checkIndexMember()"></guideIndex>
 			
 			<!--搭伴游-->
-			<lineIndex :hotlist="hotlist">
+			<lineIndex :hotlist="checkIndexhotline()">
 				<p slot="title"><span class="c-333 f-16">热门地接线路</span><a href="">更多</a></p>
 			</lineIndex>
-
-
-
 
 		  </mt-tab-container-item>
 
@@ -127,8 +124,6 @@
 			        { id: 3,title:'隔天病危入院1个月花7万',url:'index/id/3'},
 			        { id: 4,title:'女司机倒车时误将油门当刹车 从6米高平台掉下',url:'index/id/4'}
 			    ],
-			    guidelist:null,
-			    hotlist:null,
 			    activeIndex: 0,
 			    loading:false,
 			}
@@ -147,6 +142,7 @@
 
 		},
 		mounted() {
+
 		    setInterval(this.loopNewlist, 2000);
 
 		    /*让顶部导航条到一定距离增加背景色*/
@@ -173,16 +169,7 @@
 		      return - this.activeIndex * 40 + 'px';
 		    },
 
-		    /*实时计算属性*/
-		    checkIndexhotline(){
-		    	return this.$store.state.indexHotline
-		    },
-
-		    checkIndexMember(){
-		    	return this.$store.state.indexMember
-		    },
-
-
+	
 		},
 
 		watch:{
@@ -191,16 +178,6 @@
 					this.IndexActiveClass=false;
 				}
 			},
-			'checkIndexhotline':function(newvalue,oldvalue){
-				if(newvalue!=null){
-					this.hotlist=newvalue;
-				}
-			},
-			'checkIndexMember':function(newvalue,oldvalue){
-				if(newvalue!=null){
-					this.guidelist=newvalue;
-				}
-			}
 		},
 
 		methods:{
@@ -215,6 +192,14 @@
 		  		}
 
 		  	},
+
+		    checkIndexhotline(){
+		    	return this.$store.state.indexHotline
+		    },
+
+		    checkIndexMember(){
+		    	return this.$store.state.indexMember
+		    },
 
 		  	leftBar(){
 
