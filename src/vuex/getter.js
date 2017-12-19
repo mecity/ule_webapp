@@ -4,10 +4,15 @@ vuex中的属性 可以返回值和计算属性
 组件中传递参数：this.$store.getters.doneTodos(5)
 */
 const getters={
-	
+
 	/*示例*/
 	doneTodos: state => id => {
       return id
+    },
+
+    /*获取当前地接线路详情*/
+    getLineshow:state=>{
+      return state.lineShow;
     }
 
 }

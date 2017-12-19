@@ -1,5 +1,5 @@
 /*公共样式*/
-/* 
+/*
 	对于较大的图片地址 在当前组件引入会出现问题，放在css文件里引入会解决此问题
  */
 
@@ -38,7 +38,7 @@ small{
 	border-top:1px solid #dedede;
 	-webkit-transform: scaleY(.5);
 	transform:scaleY(.5);
-} 
+}
 
 .text-l{
 	text-align: left;
@@ -73,6 +73,9 @@ small{
 .pl-10{
 	padding-left: 10px;
 }
+.pr-10{
+  padding-right: 10px;
+}
 .pt10{
 	padding-top: 10px
 }
@@ -88,6 +91,9 @@ small{
 .pt-40{
 	padding-top: 40px;
 }
+.ml_10{
+  margin-left: 10px;
+}
 .mt_10{
 	margin-top: 10px;
 }
@@ -96,6 +102,12 @@ small{
 }
 .mt_40{
 	margin-top: 40px;
+}
+.mr_10{
+  margin-right: 10px;
+}
+.c-fff{
+  color: #ffffff;
 }
 .c-666{
 	color: #666
@@ -108,6 +120,13 @@ small{
 }
 .c-ule-orange{
 	color: #ff9148
+}
+
+.text-int24{
+  text-indent: 24px;
+}
+.text-int28{
+  text-indent: 28px;
 }
 
 .lh18{
@@ -135,7 +154,7 @@ small{
 	width: 90%;
 	color: white;
 	cursor: pointer;
-	background-image:-webkit-linear-gradient(45deg, #1fcca9, #37c6c0); 
+	background-image:-webkit-linear-gradient(45deg, #1fcca9, #37c6c0);
 	background-image:linear-gradient(45deg, #1fcca9, #37c6c0);
 	box-shadow: 0px 5px 10px rgba(119,234,227,.3);
 }
@@ -146,7 +165,7 @@ small{
 	width: 90%;
 	color: white;
 	cursor: pointer;
-	background-image:-webkit-linear-gradient(45deg, #f18155, #e15822); 
+	background-image:-webkit-linear-gradient(45deg, #f18155, #e15822);
 	background-image:linear-gradient(45deg, #f18155, #e15822);
 	box-shadow: 0px 5px 10px rgba(255,155,115,.3);
 }
@@ -195,6 +214,7 @@ small{
 
 .iconfont{
 	font-size: 20px!important;
+	vertical-align: middle;
 }
 .mint-tab-item-icon{
 	margin: 0 auto 3px!important;
@@ -209,5 +229,5 @@ small{
 }
 
 .mint-cell:last-child{
-	background-image:none!important 
+	background-image:none!important
 }

@@ -3,7 +3,7 @@
 
 */
 
-import { Toast,Indicator  } from 'mint-ui';
+import { Toast,Indicator } from 'mint-ui';
 
 // import MD5 from "md5";
 var MD5 = require('md5.js')
@@ -86,9 +86,9 @@ export const removesessionStore = name => {
 *验证登录账户：邮箱
 */
 
-export const checkUser = str => {
-	let reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/; 
-	return reg.test(str); 
+export const checkEmail = str => {
+	let reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+	return reg.test(str);
 }
 
 
@@ -96,8 +96,8 @@ export const checkUser = str => {
 *验证密码
 */
 export const checkPass = pass =>{
-	let reg = /^[A-Za-z0-9]{6,40}$/; 
-	return reg.test(pass); 
+	let reg = /^[A-Za-z0-9]{6,40}$/;
+	return reg.test(pass);
 }
 
 
@@ -115,9 +115,9 @@ export const createdMd5 = args => {
 /*异常提醒*/
 export const alertToast=(str,position='middle',duration=3000)=>{
 	Toast({
-		  message: str,
-		  position: position,
-		  duration: duration
+			message: str,
+			position: position,
+			duration: duration
 	});
 
 }
@@ -156,6 +156,47 @@ export const loadingClose=()=>{
 
 
 
+/*
+返回时间
+@tag:中间的连接字符 默认是空格
+@format 返回格式 默认是格式化日期 如果是timestamp则返回时间戳
+return string
+*/
+export function getFormatTime(tag='-',full='all',format='time') {
+
+	let datetime=new Date();/*时间戳*/
+
+	if(format!='time'){
+		return datetime.getTime();
+	}else{
+		let returnString='';
+		switch(full){
+			case 'all':
+				returnString=datetime.getFullYear()+tag+datetime.getMonth()+tag+datetime.getDate()+' '+datetime.getHours()+":"+datetime.getMinutes()+":"+datetime.getSeconds();
+			break;
+			case 'date':
+				returnString=datetime.getFullYear()+tag+datetime.getMonth()+tag+datetime.getDate();
+			break;
+			case 'year':
+				returnString=datetime.getFullYear();
+			break;
+			case 'month':
+				returnString=datetime.getMonth();
+			break;
+			case 'day':
+				returnString=datetime.getDate();
+			break;
+			default:
+				returnString=datetime.getFullYear()+tag+datetime.getMonth()+tag+datetime.getDate()+' '+datetime.getHours()+":"+datetime.getMinutes()+":"+datetime.getSeconds();
+			break;
+
+		}
+
+		return returnString;
+
+	}
+
+}
 
 
 

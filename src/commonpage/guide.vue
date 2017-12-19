@@ -1,7 +1,7 @@
 <!-- 首页最新地接导游 -->
 <template>
   <div class="guide_index common_box" v-on:touchmove.stop>
-    	<p class="c-666">最新地接导游</p>
+    	<p class="c-666">最新当地导游</p>
     	<mt-swipe :auto="4000" class='guide_index_swipe' :show-indicators="false">
 		  <mt-swipe-item v-for="(value,index) in list" :key="index">
 		  	<a href="#" class="guide_swipe_box">
@@ -23,7 +23,7 @@ import face from "@/assets/img/face.jpg";
 export default {
 	name: 'guide',
 	props:['newslist'],
-	components: { 
+	components: {
 		'mt-swipe': Swipe,
 		'mt-swipe-item':SwipeItem
 	},

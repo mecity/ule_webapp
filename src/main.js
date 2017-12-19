@@ -16,9 +16,16 @@ import FastClick from 'fastclick';
 import VueTouch from 'vue-touch'
 Vue.use(VueTouch, {name: 'v-touch'})
 
+/*引入初始化样式*/
+import '@/assets/css/reset.css';
+import '@/assets/css/common.css';
+
+
+
 /*mint-ui插件引入*/
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
+import '@/assets/css/ule.less';
 
 /*引入 mint-ui 懒加载*/
 import { Lazyload } from 'mint-ui';

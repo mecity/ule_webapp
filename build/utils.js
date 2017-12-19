@@ -44,8 +44,10 @@ exports.cssLoaders = function (options) {
 
     // Extract CSS when that option is specified
     // (which is the case during production build)
+
     if (options.extract) {
       return ExtractTextPlugin.extract({
+        publicPath:'../../',/*打包加上*/
         use: loaders,
         fallback: 'vue-style-loader'
       })

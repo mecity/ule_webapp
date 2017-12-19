@@ -4,7 +4,9 @@ import Index from '@/components/index/index'
 import Login from '@/components/login/login'
 import Member from '@/components/member/member'
 import Feedback from '@/components/member/feedback'
+import Score from '@/components/member/score'
 import SetInfo from '@/components/member/set'
+import Lineshow from '@/components/line/show'
 Vue.use(Router)
 
 export default new Router({
@@ -33,6 +35,16 @@ export default new Router({
       path: '/feedback',
       name: 'feedback',
       component: Feedback
+    },
+    {
+      path: '/score',
+      name: 'score',
+      component: Score
+    },
+    {
+      path: '/lineshow/:id',
+      name: 'lineshow',
+      component: Lineshow
     }
   ]
 })

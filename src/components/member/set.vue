@@ -5,7 +5,7 @@
 			<mt-cell title="意见反馈" class="f-14 bd-t" :to="{name:'feedback'}" is-link>
 			  <i slot="icon" class="iconfont icon-yijianfankui"></i>
 			</mt-cell>
-			<mt-cell title="为悠乐地接评分" class="bd-t f-14" is-link>
+			<mt-cell title="为悠乐地接评分" class="bd-t f-14" :to="{name:'score'}" is-link>
 			  <i slot="icon" class="iconfont icon-shoucang1"></i>
 			</mt-cell>
 			<mt-cell title="关于我们" class="bd-t f-14" is-link>

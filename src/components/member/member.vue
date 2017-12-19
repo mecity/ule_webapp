@@ -1,6 +1,6 @@
 <!-- 会员 -->
 <template>
-	
+
 	<div class="member">
 		<HeaderVue title="我的悠乐"></HeaderVue>
 		<div class="topbj" style="margin-top:40px;">
@@ -26,12 +26,12 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="pt-35 bg_white pl-10">
-			<mt-cell title="地接线路" class="bd-t f-14" :to="{name:'index'}"  is-link >
+			<mt-cell title="地接线路" class="f-14 bd-t" :to="{name:'index'}"  is-link >
 			  <i slot="icon" class="iconfont icon-xingqiu"></i>
 			</mt-cell>
-			<mt-cell title="搭伴游" class="bd-t f-14" is-link>
+			<mt-cell title="搭伴游" class="f-14 bd-t" is-link>
 			  <i slot="icon" class="iconfont icon-jieban"></i>
 			</mt-cell>
 			<mt-cell title="悠乐幇" class="f-14" is-link  value="1">
@@ -55,8 +55,8 @@
 <script type="text/javascript">
 	import { Cell,Header } from 'mint-ui';
 	export default {
-		
-		components: { 
+
+		components: {
 			'mt-cell': Cell,
 			'mt-header':Header,
 			'mt-button':Header,
@@ -68,7 +68,7 @@
 <style scoped lang="less">
 @bgcolor:#1fcca9;
 .btn(){
-	background-image:-webkit-linear-gradient(45deg, #fd8011, #ffba42); 
+	background-image:-webkit-linear-gradient(45deg, #fd8011, #ffba42);
 	background-image:linear-gradient(45deg, #fd8011, #ffba42);
 	border:none;
 }
@@ -76,6 +76,7 @@
 	display: flex;
 	display: -webkit-flex;
 }
+
 
 .member{
 	text-align: left;
@@ -134,12 +135,12 @@
 					text-align: center;
 					margin-left: 20px;
 					color: #fff;
-					
+
 				}
 			}
 			.fast_tool{
 				.dis_flex;
-				flex-flow: row nowrap; 
+				flex-flow: row nowrap;
 				align-items: center;
 				a{
 					flex:1;
@@ -166,7 +167,7 @@
 			}
 		}
 	}
-	
+
 	.iconfont{
 		vertical-align: middle;
 	}

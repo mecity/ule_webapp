@@ -8,11 +8,12 @@
   */
 import * as functionS from "@/assets/js/function";
 const mutations={
-	
+
 	/*修改登录状态*/
 	updataLogin(state){
 		state.isLogin=true;
 	},
+
 
 
   /*
@@ -63,6 +64,16 @@ const mutations={
   },
 
 
+  /*修改意见建议提交成功状态*/
+  updataFeedbackstate(state,Boolerstate){
+    state.feedbackState=Boolerstate;
+  },
+
+  /*寄存加载的线路详情数据*/
+  saveLineshow(state,info){
+    state.lineShow=info;
+    console.info(info)
+  }
 
 
 }

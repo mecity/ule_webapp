@@ -1,8 +1,8 @@
 <!--线路列表-->
 <template>
 	<div class="hotine">
-		<slot name="title"></slot>	
-		<div class="common_box hotline_box" v-for="(value,index) in list()" :key="index">
+		<slot name="title"></slot>
+		<router-link :to="{name:'lineshow',params: { id: value.id }}" class="common_box hotline_box" v-for="(value,index) in list()" :key="index">
 			<div class="img">
 				<img :src="value.min_thumb">
 				<ol>{{value.cityname}}</ol>
@@ -12,11 +12,11 @@
 					{{value.linetitle}}
 				</div>
 				<blockquote>
-					<span>{{value.start}}<cite>出发</cite></span>
+					<span class="text-l">{{value.start}}<cite>出发</cite></span>
 					<em>￥{{value.price_last}}</em>
 				</blockquote>
 			</div>
-		</div>
+		</router-link>
 	</div>
 </template>
 <script>
@@ -28,7 +28,7 @@
             checkStarttime(value){
             	value=parseInt(value)*1000;
             	let date=new Date(value);
-            	return date.getFullYear()+'/'+date.getMonth()+'/'+date.getDate();	
+            	return date.getFullYear()+'/'+date.getMonth()+'/'+date.getDate();
             },
             list(){
 				let that=this;
@@ -49,7 +49,7 @@
 
 
 	}
-	
+
 </script>
 <style scoped lang="less">
 	.hotine{
@@ -81,7 +81,7 @@
 			}
 		}
 	}
-	
+
 	.hotline_box{
 		height: 90px;
 		display: flex;
@@ -112,7 +112,7 @@
 				margin: 0px;
 				text-align: center;
 				z-index: 444;
-				background-image:-webkit-linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.6)); 
+				background-image:-webkit-linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.6));
 				background-image:linear-gradient(to bottom,rgba(0,0,0,0), rgba(0,0,0,0.6));
 				color: white;
 			}
@@ -147,7 +147,7 @@
 				color: #999;
 				cite{
 					background: url('~@/assets/img/icon/air_icon.png') no-repeat right center;
-					padding-right: 25px;
+					padding-right: 20px;
 					padding-left: 10px;
 					background-size: auto 80%;
 				}

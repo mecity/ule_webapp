@@ -17,12 +17,12 @@
 				  	<a :href="value.herf" >
 				  		<img v-bind:title="value.name"  v-lazy.container="value.src">
 				  	</a>
-				  	</mt-swipe-item> 
+				  	</mt-swipe-item>
 				</mt-swipe>
 			</div>
-			
+
 			<div class="inder_menu" ref="inder_menu">
-				<div class="quickMenu">		
+				<div class="quickMenu">
 					<router-link :to="{name:'member'}">
 						<i class="iconfont icon-activity_fill"></i>
 						<p>发布信息</p>
@@ -49,7 +49,7 @@
 			</div>
 			<!--最新地接-->
 			<guideIndex :newslist="checkIndexMember()"></guideIndex>
-			
+
 			<!--搭伴游-->
 			<lineIndex :hotlist="checkIndexhotline()">
 				<p slot="title"><span class="c-333 f-16">热门地接线路</span><a href="">更多</a></p>
@@ -72,9 +72,9 @@
 		</mt-tab-container>
 
 
-		
-	
-		
+
+
+
 		<mt-tabbar v-model="active" fixed>
 		  <mt-tab-item id="tab-container1">
 		  	<i slot="icon" class="iconfont icon-homepage_fill"></i>
@@ -96,7 +96,7 @@
 	</div>
 </template>
 <script>
-	
+
 	import { Tabbar, TabItem, TabContainer,TabContainerItem,Swipe, SwipeItem} from 'mint-ui';
 	import guideIndex from '@/commonpage/guide';
 	import lineIndex from '@/commonpage/linelist';
@@ -108,7 +108,7 @@
 
 			return {
 				active:'tab-container1',
-				IndexdefaulutClass:true, 
+				IndexdefaulutClass:true,
       			IndexActiveClass:false,
       			bannerDefaultlist:[
 			      	{name:'01',src:banner,herf:'http://www.baidu.com'},
@@ -130,7 +130,7 @@
 
 		},
 
-		components: { 
+		components: {
 			 'mt-tabbar': Tabbar,
 			 'mt-tab-item':TabItem,
 			 'mt-tab-container':TabContainer,
@@ -151,7 +151,7 @@
 
 				if(that.$refs.inder_menu){
 					var domtest=that.$refs.inder_menu.getBoundingClientRect().top;
-				
+
 					if(domtest<40){
 						that.IndexActiveClass=true;
 
@@ -159,7 +159,7 @@
 						that.IndexActiveClass=false;
 					}
 				}
-	
+
 		    },true)
 
 		},
@@ -169,7 +169,7 @@
 		      return - this.activeIndex * 40 + 'px';
 		    },
 
-	
+
 		},
 
 		watch:{
@@ -221,13 +221,13 @@
 		background-image:linear-gradient(180deg, #1fcca9, #37c6c0);
 		background-image:-webkit-gradient(linear, left top, left bottom, from(#1fcca9), to(#37c6c0));
 	}
-	
+
 
 	.index{
 		font-size: 16px;
 		height: 100%
 	}
-	
+
 	.content{
 		position: fixed;
 		top: 0px;
@@ -237,7 +237,7 @@
 		overflow-y: auto;
 	}
 	.index_header_bg{
-		background-color:#1fcca9; 
+		background-color:#1fcca9;
 	}
 	.index_header{
 		position: fixed;
@@ -252,7 +252,9 @@
 		-webkit-transition: background-color .5s ease;
 		-o-transition: background-color .5s ease;
 		transition: background-color .5s ease;
-		
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);/*解决移动端fiex跳动*/
+
 		.left_list_btn{
 			width: 50px;
 			height: 40px;
@@ -300,7 +302,7 @@
 			}
 		}
 	}
-	
+
 	.swpie_box{
 		height: 220px;
 		position: relative;
@@ -314,8 +316,8 @@
 			width: 100%;
 			margin: 0px auto;
 		}
-		
-		
+
+
 	}
 
 	.inder_menu{
@@ -368,7 +370,7 @@
 				position: relative;
 				transition: top 1s;
 				display: block;
-				a{	
+				a{
 					display: block;
 					line-height: 40px;
 					height: 40px;
@@ -388,8 +390,8 @@
 
 
 	}
-	
-	
+
+
 
 
 

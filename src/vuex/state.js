@@ -19,6 +19,8 @@ const state={
 	noMore:false,
 	indexHotline:null,
 	indexMember:null,
+  feedbackState:false,
+  lineShow:null,
 }
 
 export default state

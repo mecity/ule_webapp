@@ -1,6 +1,6 @@
 /*
 放置异步操作方法
-action里的方法里传入的都是一个context:(类似vuex.store的实例对象) 
+action里的方法里传入的都是一个context:(类似vuex.store的实例对象)
 【注意这里说的是类似而不是真的vuex.store实例对象】，这个实例拥有和store一样的属性和方法
 你可以用这个context对象来调用vuex里的state 比如context.state.isLogin...
 
@@ -36,9 +36,9 @@ const actions={
 			functionS.alertToast('密码不得为空!');
 		  	return false;
 		}
-		
 
-		if(!functionS.checkUser(username)){
+
+		if(!functionS.checkEmail(username)){
 			functionS.alertToast('帐号有误');
 			return false;
 		}
@@ -84,13 +84,13 @@ const actions={
 		  				return false;
 
 					}
-	
+
 				})
 				.catch(function (errorss) {
 					functionS.alertToast('很遗憾,数据错误，请联系管理员。');
 		  			return false;
 				});
-				
+
 
 			}else{
 
@@ -98,7 +98,7 @@ const actions={
 		  		return false;
 
 			}
-			
+
 		})
 		.catch(function (error) {
 			functionS.alertToast('很遗憾,数据错误，请联系管理员。');
@@ -119,7 +119,7 @@ const actions={
 		.then(function(response){
 			if(response.data.success){
 				context.commit('updataIndexmember',response.data.data);
-				console.info(response.data.data)
+				// console.info(response.data.data)
 			}else{
 				functionS.alertToast('数据加载有误...');
 		  		return false;
@@ -147,7 +147,83 @@ const actions={
 		});
 	},
 
-	
+
+
+  /*
+  * 会员中心 提交建议
+  * data:{
+  *   content:content,
+  *   contect:this.contect,
+  *   feedType:this.value,
+  *   userId:userId
+  * }
+  * */
+  postFeedback:async (context,data)=>{
+    let [content,contect,feedType]=[data.content,data.contect,data.fallback];
+
+    if(content==''){
+      functionS.alertToast('建议内容不得为空!');
+      return false;
+    }
+    if(contect==''){
+      functionS.alertToast('联系方式不得为空!');
+      return false;
+    }
+    if(feedType==''){
+      functionS.alertToast('请选择建议类型!');
+      return false;
+    }
+
+    functionS.loadingAlert('正在提交...',2);
+    context.commit('creatSign',data);
+    await axios.post('index.php/Api/User/addFeedback',context.state.creatData,config)
+    .then(function (res) {
+      functionS.loadingClose();
+      if(res.data.success){
+        /*改变提交成功之后的状态*/
+        context.commit('updataFeedbackstate',true);
+      }else{
+        functionS.alertToast('很遗憾,建议提交失败...','bottom');
+      }
+    })
+  },
+
+
+  /*
+  * 线路详情
+  * */
+
+  showLinedetail:async(context,data)=>{
+    functionS.loadingAlert();
+    context.commit('creatSign',data);
+    await axios.post('index.php/Api/Line/getdatalineshow',context.state.creatData,config)
+    .then(function (res) {
+        if(res.data.success){
+          functionS.loadingClose();
+          context.commit('saveLineshow',res.data.info);
+        }else{
+          functionS.alertToast('很遗憾数据加载失败!');
+          return false;
+        }
+
+
+    })
+
+  },
+
+  /*
+  * 线路收藏
+  * */
+  addCollect:async (context,data)=>{
+
+
+
+  }
+
+
+
+
+
 }
 
 export default actions
