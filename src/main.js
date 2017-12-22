@@ -7,6 +7,7 @@ import router from './router'
 import axios from 'axios'
 import store from '@/vuex/vuex'
 import * as functionS from "@/assets/js/function";
+/*这里可以放置一下公用的组件等等*/
 import common from "@/global/common";
 
 /*引入该插件可以屏蔽移动端点击事件延迟300毫秒bug*/
@@ -69,9 +70,7 @@ new Vue({
   template: '<App/>',
   components: { App },
   // 组件创建前，把网站默认的数据都异步加载了
-  beforeCreate() {
-
-      this.$store.dispatch('getIndexdata')
-
+  beforeCreate(){
+    this.$store.dispatch('getIndexdata');
   }
 })

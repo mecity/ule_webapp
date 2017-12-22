@@ -4,7 +4,7 @@
 		  <mt-tab-container-item id="tab-container1">
 		  	<!--topTool-->
 		    <div :class="{index_header:IndexdefaulutClass,index_header_bg:IndexActiveClass}">
-		   		<div class="left_list_btn" @click="leftBar"></div>
+		   		<div class="left_list_btn"></div>
 		   		<div class="search_index">
 		   			<input type="search" name="search_index" placeholder="输入关键词来查找相关地接导游">
 		   		</div>
@@ -43,7 +43,7 @@
 				<!--最新新闻-->
 				<div class="latestNews">
 					<ul :style="{ top }">
-						<a v-for="(value,index) in newsDefaultlist" :href="value.id">{{value.title}}</a>
+						<router-link :to="{name:'newshow',params: { id: value.id }}" v-for="(value,index) in newsDefaultlist" :key="value.id">{{value.title}}</router-link>
 					</ul>
 				</div>
 			</div>
@@ -105,31 +105,25 @@
 	export default{
 
 		data(){
-
 			return {
 				active:'tab-container1',
 				IndexdefaulutClass:true,
-      			IndexActiveClass:false,
-      			bannerDefaultlist:[
+        IndexActiveClass:false,
+        bannerDefaultlist:[
 			      	{name:'01',src:banner,herf:'http://www.baidu.com'},
 			      	{name:'02',src:banner,herf:'http://www.sina.com.cn'},
 			      	{name:'03',src:banner,herf:'http://www.163.com'},
 			      	{name:'04',src:banner,herf:'http://www.163.com'},
 			      	{name:'05',src:banner,herf:'http://www.163.com'}
-			    ],
-			    newsDefaultlist:[
-			        { id: 0 ,title:'广州1日连发3文规范房屋租赁:人均不得低于5平米人均不得低于5平米人均不得低于5平米人均不得低于5平米',url:'index/id/0'},
-			        { id: 1 ,title:'国歌法拟列入香港澳门特别行政区基本法附件三',url:'index/id/1'},
-			        { id: 2 ,title:'六旬老人帮邻居救火负伤 谢绝万元医药费',url:'index/id/2'},
-			        { id: 3,title:'隔天病危入院1个月花7万',url:'index/id/3'},
-			        { id: 4,title:'女司机倒车时误将油门当刹车 从6米高平台掉下',url:'index/id/4'}
-			    ],
-			    activeIndex: 0,
-			    loading:false,
+        ],
+        newsDefaultlist:[],
+        activeIndex: 0,
+        loading:false,
 			}
-
 		},
-
+    created(){
+		  this.newsDefaultlist=this.getIndexdata();
+    },
 		components: {
 			 'mt-tabbar': Tabbar,
 			 'mt-tab-item':TabItem,
@@ -139,7 +133,6 @@
 		 	 'mt-swipe-item':SwipeItem,
 		 	 'guideIndex':guideIndex,
 		 	 'lineIndex':lineIndex
-
 		},
 		mounted() {
 
@@ -164,11 +157,15 @@
 
 		},
 
-	  	computed: {
+    computed: {
 		    top() {
 		      return - this.activeIndex * 40 + 'px';
 		    },
 
+        /*监控新闻列表的更新*/
+        vueNewlist(){
+          return this.$store.getters.getIndexnewsdata;
+        }
 
 		},
 
@@ -178,6 +175,14 @@
 					this.IndexActiveClass=false;
 				}
 			},
+
+      /*监听vuex里的getters的indexNews数据是否已经挂载成功*/
+      'vueNewlist':function(newvalue,oldvalue){
+        if(newvalue){
+          this.newsDefaultlist=newvalue;
+        }
+      }
+
 		},
 
 		methods:{
@@ -190,7 +195,6 @@
 		  		} else {
 		  			this.activeIndex = 0;
 		  		}
-
 		  	},
 
 		    checkIndexhotline(){
@@ -201,12 +205,9 @@
 		    	return this.$store.state.indexMember
 		    },
 
-		  	leftBar(){
-
-		  	}
-
-
-
+        getIndexdata(){
+          return this.$store.getters.getIndexnewsdata;
+        }
 		}
 
 

@@ -43,8 +43,14 @@ small{
 .text-l{
 	text-align: left;
 }
+.text-c{
+  text-align: center;
+}
 .text-r{
 	text-align: right;
+}
+.f-12{
+  font-size: 12px;
 }
 .f-14{
 	font-size: 14px;
@@ -79,11 +85,20 @@ small{
 .pt10{
 	padding-top: 10px
 }
+.pt-15{
+  padding-top: 15px
+}
+.pt-20{
+  padding-top: 20px
+}
 .pb-10{
 	padding-bottom: 10px
 }
 .pb-15{
 	padding-bottom: 15px
+}
+.pb-25{
+  padding-bottom: 25px
 }
 .pt-35{
 	padding-top: 35px;
@@ -99,6 +114,9 @@ small{
 }
 .mt_20{
 	margin-top: 20px;
+}
+.mb_10{
+  margin-top: 10px;
 }
 .mt_40{
 	margin-top: 40px;

@@ -7,7 +7,7 @@
 
         <div class="title bg_white bd-t">
           <div class="c-333 pr-10 f-16 lh22 pl-10 pt10 pb-10">{{title}}</div>
-          <div class="f-12 mr_10 ml_10" @click="getshow">
+          <div class="f-12 mr_10 ml_10" @click="getfocus">
             <i class="iconfont icon-xiangqu c-666"></i>
             <p>收藏</p>
           </div>
@@ -71,7 +71,7 @@
 </template>
 <script>
 
-    import { Cell,Popup,Button } from 'mint-ui';
+    import { Cell,Popup,Button,MessageBox  } from 'mint-ui';
     export default {
         data() {
             return {
@@ -97,8 +97,27 @@
             alert(this.id)
           },
 
-          getshow:function () {
+          /*添加关注*/
+          getfocus(){
 
+            /*判断是否登录*/
+            let isLogin=this.$function.getStore('userinfo');
+            if(isLogin){
+              alert('已经登录');
+            }else{
+              MessageBox.confirm('收藏此路线必须登录?','温馨提示',
+              {
+                showCancelButton: true,
+                confirmButtonHighlight:true,
+                cancelButtonText:'知道了',
+                confirmButtonText:'去登录'
+              }).then(action => {
+
+                this.$router.push({name:'login'});
+
+              });
+
+            }
           },
           closePop(){
             this.popupVisible=true;

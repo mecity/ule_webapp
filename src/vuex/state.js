@@ -21,6 +21,10 @@ const state={
 	indexMember:null,
   feedbackState:false,
   lineShow:null,
+  isScore:false,/*是否签到*/
+  latestscore:false,/*会员积分*/
+  indexNews:false,/*首页新闻列表*/
+
 }
 
 export default state

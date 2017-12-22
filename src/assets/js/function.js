@@ -30,7 +30,7 @@ export const setStore = (name, content) => {
  * 获取localStorage
  */
 export const getStore = name => {
-	if (!name) return;
+	if (!name) return false;
 	return window.localStorage.getItem(name);
 }
 

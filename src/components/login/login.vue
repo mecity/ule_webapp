@@ -30,6 +30,12 @@
 					pass:''
 				}
 			},
+      created(){
+        let haslogin=this.$store.getters.getLoginstate;
+        if(haslogin){
+          this.$router.push({name:'member'})
+        }
+      },
 			computed:{
 				/*实时计算vuex中登录状态*/
 				listenshowpage(){
@@ -38,17 +44,12 @@
 			},
 			watch:{
 				/*监听上面的如果值发生改变就判断如果是true则表示登录成功*/
-	            listenshowpage: function(newvuale, oldvuale) {  
+	            listenshowpage: function(newvuale, oldvuale) {
 	                if(newvuale){
 	                	/*登录成功跳转跳转目标*/
 	                	this.$router.push({name:'member'});
 	                }
 	            }
-			},
-			mounted(){
-
-				console.info('原始',this.$store.state.isLogin)
-
 			},
 
 			methods:{
@@ -115,11 +116,11 @@ h2{
 		}
 	}
 	.account{
-		background:url('~@/assets/img/icon/account_icon.png') no-repeat left center; 
+		background:url('~@/assets/img/icon/account_icon.png') no-repeat left center;
 		background-size: auto 35%;
 	}
 	.password{
-		background:url('~@/assets/img/icon/password_icon.png') no-repeat left center; 
+		background:url('~@/assets/img/icon/password_icon.png') no-repeat left center;
 		background-size: auto 35%;
 	}
 }

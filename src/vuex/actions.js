@@ -48,7 +48,8 @@ const actions={
 			return false;
 		}
 
-
+		/*弹出正在登录*/
+    functionS.loadingAlert('正在登录中...');
 		/*删除明文密码*/
 		delete data.pass;
 
@@ -56,6 +57,7 @@ const actions={
 
 		await axios.post('index.php/Api/Login/index',context.state.creatData,config)
 		.then(function (response) {
+      functionS.loadingClose();
 			if(response.data.success){
 
 				/*生成传输密码*/
@@ -67,22 +69,22 @@ const actions={
 				/*根据得到的用户code 来生成加密的密码 然后继续请求比照*/
 				axios.post('index.php/Api/Login/checkUserinfo',context.state.creatData,config)
 				.then(function(responsess){
+
+
 					if(responsess.data.success){
 						/*登录成功*/
-
 						/*先移除之前存储的*/
 						functionS.removeStore('userinfo');
 
 						/*这里可以写入用户缓存信息*/
 		  				functionS.setStore('userinfo', responsess.data.member_info);
-		  				context.commit('updataLogin')
+		  				context.commit('updataLogin',true);
 
 					}else{
 
 						/*登录失败*/
-						functionS.alertToast('很遗憾,登录失败,请重新再试！');
-		  				return false;
-
+						functionS.alertToast('账号或密码有误,请重新再试！');
+            return false;
 					}
 
 				})
@@ -134,17 +136,15 @@ const actions={
 		await axios.post('index.php/Api/Line/index',context.state.creatData,config)
 		.then(function(response){
 			if(response.data.success){
-				functionS.loadingClose();
 				context.commit('updataIndexhotline',response.data.data);
 			}else{
 				functionS.alertToast('数据加载有误...');
 		  		return false;
 			}
-		})
-		.catch(function (error) {
-			functionS.alertToast('很遗憾,数据错误，请联系管理员。');
-		  	return false;
 		});
+
+    context.dispatch('getIndexnews',{limit:20});
+    functionS.loadingClose();
 	},
 
 
@@ -192,7 +192,6 @@ const actions={
   /*
   * 线路详情
   * */
-
   showLinedetail:async(context,data)=>{
     functionS.loadingAlert();
     context.commit('creatSign',data);
@@ -205,8 +204,6 @@ const actions={
           functionS.alertToast('很遗憾数据加载失败!');
           return false;
         }
-
-
     })
 
   },
@@ -216,9 +213,63 @@ const actions={
   * */
   addCollect:async (context,data)=>{
 
+    console.info('我是线路收藏');
+
+  },
+
+  /*判断该会员今日是否已经签到过*/
+  checkScore:async(context,data)=>{
+    context.commit('creatSign',data);
+    await axios.post('index.php/Api/User/checkScore',context.state.creatData,config)
+    .then(function (res) {
+      if(res.data.success){
+        context.commit('updataScore',res.data.isScore);
+      }
+    })
+  },
+
+  /*会员签到*/
+  addScore:async (context,data)=>{
+    context.commit('creatSign',data);
+    await axios.post('index.php/Api/User/addScore',context.state.creatData,config)
+    .then(function (res) {
+
+       if(res.data.success){
+         functionS.alertToast('签到成功!');
+         /*修改会员积分状态*/
+         context.commit('updataMemberscore',res.data.latestscore);
+
+         /*修改是否签到状态*/
+         context.commit('updataScore',true);
+       }
+    })
+  },
+
+  /*获取首页新闻通知*/
+  getIndexnews:async(context,data)=>{
+    /*data的传值：{limit:20}*/
+    context.commit('creatSign',data);
+    await axios.post('index.php/Api/News/index',context.state.creatData,config)
+    .then(function (res) {
+      if(res.data.success){
+        context.commit('updataIndexnewslist',res.data.newslist);
+      }else{
+        functionS.alertToast('很遗憾数据获取失败!');
+        return false
+      }
+    })
+  },
 
 
+  /*获取新闻详情页*/
+  getNewsshow:async(context,data)=>{
+    context.commit('creatSign',data);
+    await axios.post('index.php/Api/News/getnewShow',context.state.creatData,config)
+    .then(function (res) {
+      return res.data.data
+    })
   }
+
 
 
 

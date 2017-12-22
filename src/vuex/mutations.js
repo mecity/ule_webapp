@@ -10,11 +10,13 @@ import * as functionS from "@/assets/js/function";
 const mutations={
 
 	/*修改登录状态*/
-	updataLogin(state){
-		state.isLogin=true;
+	updataLogin(state,mode){
+		state.isLogin=mode;
+		if(mode==false){
+		  /*删除本地存储的会员登录信息*/
+      functionS.removeStore('userinfo');
+    }
 	},
-
-
 
   /*
   设置签名转存到sign中
@@ -72,7 +74,21 @@ const mutations={
   /*寄存加载的线路详情数据*/
   saveLineshow(state,info){
     state.lineShow=info;
-    console.info(info)
+  },
+
+  /*修改是否签到*/
+  updataScore(state,mode){
+      state.isScore=mode;
+  },
+
+  /*修改签到之后的积分数据*/
+  updataMemberscore(state,nums){
+    state.latestscore=nums;
+  },
+
+  /*首页新闻列表*/
+  updataIndexnewslist(state,arr){
+    state.indexNews=arr;
   }
 
 

@@ -20,35 +20,34 @@
 	</div>
 </template>
 <script>
-	export default{
-		name:'hotine',
-		props:['hotlist'],
-		methods:{
-			/*处理出发日期*/
-            checkStarttime(value){
-            	value=parseInt(value)*1000;
-            	let date=new Date(value);
-            	return date.getFullYear()+'/'+date.getMonth()+'/'+date.getDate();
-            },
-            list(){
-				let that=this;
-				let hotlist = this.hotlist;
-				let arr=[];
-				if(hotlist){
-					hotlist.filter(function (v,i) {
-						v.linetitle=that.$function.subStrings(v.title,40);
-						v.start=that.checkStarttime(v.start_time);
-						v.min_thumb=that.$store.state.webSite+v.thumb;
-						arr[i]=v;
-		            });
-				}
-				return arr;
-			}
-		}
+  export default {
+    name: 'hotine',
+    props: ['hotlist'],
+    methods: {
+      /*处理出发日期*/
+      checkStarttime(value) {
+        value = parseInt(value) * 1000;
+        let date = new Date(value);
+        return date.getFullYear() + '/' + date.getMonth() + '/' + date.getDate();
+      },
+      list() {
+        let that = this;
+        let hotlist = this.hotlist;
+        let arr = [];
+        if (hotlist) {
+          hotlist.filter(function (v, i) {
+            v.linetitle = that.$function.subStrings(v.title, 40);
+            v.start = that.checkStarttime(v.start_time);
+            v.min_thumb = that.$store.state.webSite + v.thumb;
+            arr[i] = v;
+          });
+        }
+        return arr;
+      }
+    }
 
 
-
-	}
+  }
 
 </script>
 <style scoped lang="less">
@@ -60,6 +59,7 @@
 		 p{
 			width: 94%;
 			display: flex;
+
 			display: -webkit-flex;
 			margin: 0px auto;
 			flex-flow: row nowrap;
@@ -67,6 +67,8 @@
 			margin-bottom: 10px;
 			span{
 				line-height: 22px;
+        height: 22px;
+        overflow-y: hidden;
 				font-size: 14px;
 			}
 			a{
@@ -139,6 +141,7 @@
 			align-items: center;
 			height: 36px;
 			justify-content: center;
+      flex-flow: row nowrap;
 			span{
 				width: 60%;
 				line-height: 36px;

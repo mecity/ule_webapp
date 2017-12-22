@@ -20,15 +20,27 @@
 			  <i slot="icon" class="iconfont icon-shuaxin"></i>
 			</mt-cell>
 		</div>
-		<button class="btn_ule_quite mt_20 f-14">退出登录</button>
-
-
+		<button class="btn_ule_quite mt_20 f-14" @click="quitelogin">退出登录</button>
 	</div>
 </template>
 <script>
 	import { Cell,MessageBox } from 'mint-ui';
 	export default {
-		components: { 
+    created(){
+      /*判断是否登录如果未登录直接转去登录页*/
+      let haslogin=this.$store.getters.getLoginstate;
+      if(!haslogin||haslogin==null){
+        this.$router.push({name:'login'})
+      }
+    },
+	  methods:{
+      quitelogin(){
+        this.$store.commit('updataLogin',false);
+        console.info(this.$function.getStore('userinfo'));
+        this.$router.push({name:'member'});
+      }
+    },
+		components: {
 			'mt-cell': Cell,
 		}
 
