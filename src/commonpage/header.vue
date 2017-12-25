@@ -11,7 +11,7 @@
 	<div class="right">
 		<slot name="right"></slot>
 	</div>
-	
+
 </div>
 
 </template>
@@ -34,7 +34,7 @@
 		flex-flow: row nowrap;
 		align-items: center;
 		justify-content: space-between;
-		z-index: 99999;
+		z-index: 99999999;
 		position: fixed;
 		left: 0px;
 		right: 0px;
@@ -48,7 +48,7 @@
 			word-break: keep-all;
 			white-space:nowrap;
 			overflow:hidden;
-			text-overflow:ellipsis; 
+			text-overflow:ellipsis;
 		}
 		.left{
 			margin-left: 10px;
@@ -67,7 +67,7 @@
 			margin-right: 10px;
 			min-width: 60px;
 			text-align: right;
-			overflow:hidden; 
+			overflow:hidden;
 		}
 	}
 </style>

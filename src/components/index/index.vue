@@ -52,13 +52,18 @@
 
 			<!--搭伴游-->
 			<lineIndex :hotlist="checkIndexhotline()">
-				<p slot="title"><span class="c-333 f-16">热门地接线路</span><a href="">更多</a></p>
+        <p slot="title"><span class="c-333 f-16">热门地接线路</span><router-link :to="{name:'linelist'}">更多</router-link></p>
 			</lineIndex>
 
 		  </mt-tab-container-item>
 
 		  <mt-tab-container-item id="tab-container2">
-		   	222
+          fsfd
+        <router-view/>
+
+
+
+
 		  </mt-tab-container-item>
 
 		  <mt-tab-container-item id="tab-container3">
@@ -106,7 +111,7 @@
 
 		data(){
 			return {
-				active:'tab-container1',
+				active:'tab-container1',/*这是当前选中的tab内容框的id*/
 				IndexdefaulutClass:true,
         IndexActiveClass:false,
         bannerDefaultlist:[
@@ -171,6 +176,7 @@
 
 		watch:{
 			'active':function(newvalue,oldvalue){
+			  alert('newvalue'+newvalue)
 				if(newvalue==='tab-container1'){
 					this.IndexActiveClass=false;
 				}

@@ -60,6 +60,7 @@ Vue.use(InfiniteScroll);
 Vue.prototype.$http = axios
 Vue.prototype.$function = functionS;/*公共方法*/
 
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
