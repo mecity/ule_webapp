@@ -121,7 +121,7 @@ const actions={
 		.then(function(response){
 			if(response.data.success){
 				context.commit('updataIndexmember',response.data.data);
-				// console.info(response.data.data)
+				console.info(response.data.data)
 			}else{
 				functionS.alertToast('数据加载有误...');
 		  		return false;
@@ -261,14 +261,24 @@ const actions={
   },
 
 
-  /*获取新闻详情页*/
-  getNewsshow:async(context,data)=>{
-    context.commit('creatSign',data);
-    await axios.post('index.php/Api/News/getnewShow',context.state.creatData,config)
+  /*获取微信默认配置*/
+  getWxconfig:async(context)=>{
+    context.commit('creatSign','');
+    await axios.post('index.php/Api/Wx/getSignPackage',context.state.creatData,config)
     .then(function (res) {
-      return res.data.data
+      if(res.data.success){
+        context.commit('updataWeixinConfig',res.data.data);
+      }else{
+        functionS.alertToast('很遗憾配置获取失败!');
+        return false
+      }
     })
+
   }
+
+
+
+
 
 
 

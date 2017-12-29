@@ -24,6 +24,7 @@ const state={
   isScore:false,/*是否签到*/
   latestscore:false,/*会员积分*/
   indexNews:false,/*首页新闻列表*/
+  weixinConfig:false,/*微信js-sdk配置*/
 
 }
 

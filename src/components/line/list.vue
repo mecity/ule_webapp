@@ -5,9 +5,13 @@
     <router-link to="/" slot="right"><i class="iconfont icon-homepage c-fff"></i></router-link>
   </HeaderVue>
   <div class="list_box">
-    dsad
+    <div style="height: 2000px;">cdsadsa</div>
+
+
+
 
   </div>
+  <FooterVue></FooterVue>
 </div>
 </template>
 <script>
@@ -32,7 +36,7 @@
     box-sizing: border-box;
     position: fixed;
     top:40px;
-    bottom: 0px;
+    bottom: 55px;
     left: 0px;
     right: 0px;
     text-align: left;

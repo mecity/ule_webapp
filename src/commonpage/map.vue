@@ -1,6 +1,7 @@
 <!--全球国家-->
 <template>
   <div>
+    dsad----map
     <mt-index-list>
       <mt-index-section index="A">
         <mt-cell title="Aaron"></mt-cell>

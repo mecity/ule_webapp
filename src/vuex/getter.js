@@ -28,8 +28,12 @@ const getters={
     /*获取首页新闻列表*/
     getIndexnewsdata:state=>{
       return state.indexNews;
-    }
+    },
 
+    /*获取微信配置*/
+    getWexinconfig:state=>{
+      return state.weixinConfig;
+    },
 
 
 }

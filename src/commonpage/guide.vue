@@ -19,7 +19,7 @@
 
 <script>
 import { Swipe, SwipeItem } from 'mint-ui';
-import face from "@/assets/img/face.jpg";
+import face from "@/assets/img/default.jpg";
 export default {
 	name: 'guide',
 	props:['newslist'],
@@ -44,9 +44,12 @@ export default {
 					if(v.statename)arrcountry.push(v.statename);
 					if(v.cityname)arrcountry.push(v.cityname);
 					v.place=arrcountry.join('·');
-
-					let face=JSON.parse(v.member_face);
-					v.face=that.$store.state.webSite+face.middle;
+					if(v.member_face){
+            let face=JSON.parse(v.member_face);
+            v.face=that.$store.state.webSite+face.middle;
+          }else{
+					  v.face=face;
+          }
 					v.member_about=v.member_about?v.member_about:'这人太懒,什么都木有留下...';
 					arr[i]=v;
 				});

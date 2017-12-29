@@ -89,7 +89,15 @@ const mutations={
   /*首页新闻列表*/
   updataIndexnewslist(state,arr){
     state.indexNews=arr;
+  },
+
+  /*微信配置修改*/
+  updataWeixinConfig(state,obj){
+    if(obj){
+      state.weixinConfig=obj;
+    }
   }
+
 
 
 }

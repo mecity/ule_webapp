@@ -23,6 +23,9 @@ import '@/assets/css/common.css';
 
 
 
+
+
+
 /*mint-ui插件引入*/
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
@@ -73,5 +76,8 @@ new Vue({
   // 组件创建前，把网站默认的数据都异步加载了
   beforeCreate(){
     this.$store.dispatch('getIndexdata');
+
+    /*微信*/
+    this.$store.dispatch('getWxconfig');
   }
 })
